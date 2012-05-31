@@ -295,3 +295,168 @@ class Rectangle(GraphicalObject):
         # ...
 
 
+class DenseMatrix(Matrix):
+
+    def __mul__(self, mat):
+        assert self.numberOfColumns == mat.numberOfRows
+        result = DenseMatrix(
+            self.numberOfRows, mat.numberOfColumns)
+        for i in xrange(self.numberOfRows):
+            for j in xrange(mat.numberOfColumns):
+                sum = 0
+                for k in xrange(self.numberOfColumns):
+                    sum += self[i,k] * mat[k,j]
+                result[i,j] = sum
+        return result
+
+    # ...
+
+class LinkedList(object):
+
+    class Element(object):
+
+        def __init__(self, list, datum, next):
+            self._list = list
+            self._datum = datum
+            self._next = next
+
+        def getDatum(self):
+            return self._datum
+
+        datum = property(
+            fget = lambda self: self.getDatum())
+
+        def getNext(self):
+            return self._next
+
+        next = property(
+            fget = lambda self: self.getNext())
+
+    # ...
+
+class LinkedList(object):
+
+    def __init__(self):
+        self._head = None
+        self._tail = None
+
+    # ...
+
+class LinkedList(object):
+
+    def purge(self):
+        self._head = None
+        self._tail = None
+
+    # ...
+
+class LinkedList(object):
+
+    def getHead(self):
+        return self._head
+
+    head = property(
+        fget = lambda self: self.getHead())
+    
+    def getTail(self):
+        return self._tail
+
+    tail = property(
+        fget = lambda self: self.getTail())
+    
+    def getIsEmpty(self):
+        return self._head is None
+
+    isEmpty = property(
+        fget = lambda self: self.getIsEmpty())
+
+    # ...
+
+class LinkedList(object):
+
+    def getFirst(self):
+        if self._head is None:
+            raise ContainerEmpty
+        return self._head._datum
+
+    first = property(
+        fget = lambda self: self.getFirst())
+
+    def getLast(self):
+        if self._tail is None:
+            raise ContainerEmpty
+        return self._tail._datum
+
+    last = property(
+        fget = lambda self: self.getLast())
+
+    # ...
+
+
+class LinkedList(object):
+
+    def prepend(self, item):
+        tmp = self.Element(self, item, self._head)
+        if self._head is None:
+            self._tail = tmp
+        self._head = tmp
+
+    # ...
+
+class LinkedList(object):
+
+    def append(self, item):
+        tmp = self.Element(self, item, None)
+        if self._head is None:
+            self._head = tmp
+        else:
+            self._tail._next = tmp
+        self._tail = tmp
+
+    # ...
+
+
+class Tree(Container):
+
+    def depthFirstTraversal(self, visitor):
+        assert isinstance(visitor, PrePostVisitor)
+        if not self.isEmpty and not visitor.isDone:
+            visitor.preVisit(self.key)
+            for i in xrange(self.degree):
+                self.getSubtree(i).depthFirstTraversal(visitor)
+            visitor.postVisit(self.key)
+
+    # ...
+
+class LinkedList(object):
+
+    def __copy__(self):
+        result = LinkedList()
+        ptr = list._head
+        while ptr is not None:
+            result.append(ptr._datum)
+            ptr = ptr._next
+        return result
+
+    # ...
+
+class LinkedList(object):
+
+    def extract(self, item):
+        ptr = self._head
+        prevPtr = None
+        while ptr is not None and ptr._datum is not item:
+            prevPtr = ptr
+            ptr = ptr._next
+        if ptr is None:
+            raise KeyError
+        if ptr == self._head:
+            self._head = ptr._next
+        else:
+            prevPtr._next = ptr._next
+        if ptr == self._tail:
+            self._tail = prevPtr
+
+    # ...
+
+
